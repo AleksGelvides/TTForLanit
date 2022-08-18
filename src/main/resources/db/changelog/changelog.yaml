@@ -1,0 +1,5 @@
+databaseChangeLog:
+  - include:
+      file: classpath:db/changelog/changeset/person-changeset.yaml
+  - include:
+      file: classpath:db/changelog/changeset/cars-changeset.yaml

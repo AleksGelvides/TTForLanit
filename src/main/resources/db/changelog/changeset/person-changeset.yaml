@@ -1,0 +1,8 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1.0.0
+      author: GelvidesAleks
+      changes:
+        - sqlFile:
+            encoding: utf8
+            path: classpath:db/changelog/changeset/sql_files/create_person_table.sql
