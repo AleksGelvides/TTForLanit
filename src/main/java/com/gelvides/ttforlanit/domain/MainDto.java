@@ -8,12 +8,12 @@ import javax.validation.constraints.NotNull;
 
 @Getter
 @Setter
-public abstract class Main {
+public abstract class MainDto {
 
     @NotNull
     private final Long id;
 
-    public Main(Long id) {
+    public MainDto(Long id) {
         this.id = id;
     }
 }

@@ -8,7 +8,7 @@ import javax.validation.constraints.Pattern;
 
 @Getter
 @Setter
-public class Car extends Main{
+public class CarDto extends MainDto {
     @NotNull
     @Pattern(regexp = ".+-.+")
     private String model;
@@ -18,10 +18,10 @@ public class Car extends Main{
     private Long ownerid;
 
 
-    public Car(long id,
-               String model,
-               Integer horsepower,
-               Long ownerid){
+    public CarDto(long id,
+                  String model,
+                  Integer horsepower,
+                  Long ownerid){
         super(id);
         this.model = model;
         this.horsepower = horsepower;
