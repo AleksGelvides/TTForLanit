@@ -14,6 +14,8 @@ import javax.persistence.*;
 public class Car {
     @Id
     private long id;
+    @Column(name = "vendor")
+    private String vendor;
     @Column(name = "model")
     private String model;
     @Column(name = "horsepower")
@@ -26,4 +28,7 @@ public class Car {
         return person.getId();
     }
 
+    public String getFullName(){
+        return this.vendor.concat("-").concat(this.model);
+    }
 }
