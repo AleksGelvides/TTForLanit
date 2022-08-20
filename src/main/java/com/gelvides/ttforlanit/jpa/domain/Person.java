@@ -1,17 +1,11 @@
 package com.gelvides.ttforlanit.jpa.domain;
 
-
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
-
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
-import static java.lang.System.out;
 
 @Getter
 @Setter

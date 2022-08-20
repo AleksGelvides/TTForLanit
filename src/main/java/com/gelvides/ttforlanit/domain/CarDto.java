@@ -1,8 +1,5 @@
 package com.gelvides.ttforlanit.domain;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.gelvides.ttforlanit.jpa.domain.Person;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,6 +8,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 @Getter
+@Setter
 public class CarDto extends MainDto {
     @NotNull
     @Pattern(regexp = ".+-.+")
