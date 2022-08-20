@@ -4,10 +4,10 @@ import com.gelvides.ttforlanit.domain.CarDto;
 import com.gelvides.ttforlanit.domain.PersonDto;
 import com.gelvides.ttforlanit.services.CarService;
 import com.gelvides.ttforlanit.services.PersonService;
+import com.gelvides.ttforlanit.services.StatisticService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -17,10 +17,14 @@ import javax.validation.Valid;
 public class MainRestController {
     private final PersonService personService;
     private final CarService carService;
+    private final StatisticService statisticService;
     @Autowired
-    public MainRestController(PersonService personService, CarService carService) {
+    public MainRestController(PersonService personService,
+                              CarService carService,
+                              StatisticService statisticService) {
         this.personService = personService;
         this.carService = carService;
+        this.statisticService = statisticService;
     }
 
     @PostMapping("/person")
@@ -55,8 +59,8 @@ public class MainRestController {
     @GetMapping("/statistic")
     public ResponseEntity<?> getStatistic(){
         try{
-
-            return new ResponseEntity<>(personService.getAll(), HttpStatus.OK);
+            var statistic = statisticService.getStatistic();
+            return new ResponseEntity<>(statistic, HttpStatus.OK);
         }catch (Exception e){
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
