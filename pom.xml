@@ -11,7 +11,7 @@
 	<groupId>com.gelvides</groupId>
 	<artifactId>ttforlanit</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 	<name>ttforlanit</name>
 	<description>Test task for Lanit</description>
 	<properties>
