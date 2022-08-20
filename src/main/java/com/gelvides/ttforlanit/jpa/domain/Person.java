@@ -32,9 +32,4 @@ public class Person {
     @OneToMany(mappedBy = "person", fetch = FetchType.EAGER)
     private List<Car> cars;
 
-    @Override
-    public String toString(){
-        return "id: " + id + ". name: " + name + ". birthdate: " + birthdate + ". cars: " + cars;
-    }
-
 }

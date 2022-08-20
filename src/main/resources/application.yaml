@@ -17,3 +17,4 @@ spring:
     change-log: classpath:db/changelog/changelog.yaml
     enabled: true
 
+
