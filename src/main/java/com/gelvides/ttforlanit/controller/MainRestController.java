@@ -2,22 +2,32 @@ package com.gelvides.ttforlanit.controller;
 
 import com.gelvides.ttforlanit.domain.CarDto;
 import com.gelvides.ttforlanit.domain.PersonDto;
+import com.gelvides.ttforlanit.services.CarService;
+import com.gelvides.ttforlanit.services.PersonService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
 
 @RestController
 public class MainRestController {
+    private final PersonService personService;
+    private final CarService carService;
+    @Autowired
+    public MainRestController(PersonService personService, CarService carService) {
+        this.personService = personService;
+        this.carService = carService;
+    }
 
     @PostMapping("/person")
     public ResponseEntity<?> createPerson(@Valid @RequestBody PersonDto personDto){
         try {
-            return new ResponseEntity<>(personDto, HttpStatus.OK);
+            personService.save(personDto);
+            return new ResponseEntity<>("Пользователь успешно сохранен", HttpStatus.OK);
         }catch (Exception e){
             return new ResponseEntity(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
@@ -26,9 +36,35 @@ public class MainRestController {
     @PostMapping("/car")
     public ResponseEntity<?> createCar(@Valid @RequestBody CarDto carDto){
         try {
-            return new ResponseEntity<>(carDto, HttpStatus.OK);
+            carService.save(carDto);
+            return new ResponseEntity<>("Автомобиль успешно сохранен", HttpStatus.OK);
         }catch (Exception e){
             return new ResponseEntity(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
+    }
+
+    @GetMapping("/personwithcars")
+    public ResponseEntity<?> getPersonWithCars(@RequestParam(name = "personId") long personId){
+        try{
+            return new ResponseEntity<>(personService.getEntity(personId), HttpStatus.OK);
+        }catch (Exception e) {
+            return new ResponseEntity<>("Такой пользователь не найден", HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @GetMapping("/statistic")
+    public ResponseEntity<?> getStatistic(){
+        try{
+
+            return new ResponseEntity<>(personService.getAll(), HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @GetMapping("/delete")
+    public ResponseEntity<?> delete(){
+        personService.deleteAll();
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

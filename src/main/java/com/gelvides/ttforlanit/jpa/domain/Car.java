@@ -1,6 +1,5 @@
 package com.gelvides.ttforlanit.jpa.domain;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
@@ -23,8 +22,8 @@ public class Car {
     @JoinColumn(name = "person_id", nullable = false)
     private Person person;
 
-    @Override
-    public String toString(){
-        return "id: " + this.id + ". model: " + model + ". horsepower: " + horsepower;
+    public Long getOwnerid(){
+        return person.getId();
     }
+
 }
