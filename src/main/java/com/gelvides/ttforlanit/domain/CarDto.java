@@ -31,7 +31,5 @@ public class CarDto extends MainDto {
         this.model = model;
         this.horsepower = horsepower;
         this.ownerid = ownerid;
-    };
-
-
+    }
 }

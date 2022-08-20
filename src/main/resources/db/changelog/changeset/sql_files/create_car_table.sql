@@ -1,5 +1,6 @@
 create table car(
     id bigserial primary key,
+    vendor varchar,
     model varchar,
     horsepower int,
     person_id bigserial,
