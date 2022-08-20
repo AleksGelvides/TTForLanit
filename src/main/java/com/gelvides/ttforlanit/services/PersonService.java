@@ -50,7 +50,7 @@ public class PersonService implements ServicesApi<PersonDto> {
             if(!repository.findById(person.getId()).isEmpty())
                 throw new Exception("Этот пользователь уже существует");
             if(person.getBirthdate().after(new Date()))
-                throw new Exception("Дата рождения пользователя не может быть сегодня");
+                throw new Exception("Дата рождения пользователя не может быть сегодня или позже");
         }
     };
 }
