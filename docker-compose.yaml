@@ -1,0 +1,26 @@
+version: '3'
+services:
+  postgres-db:
+    image: "postgres:14"
+    container_name: database
+    volumes:
+      - ./database:/var/lib/postgres/data
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=postgres
+    ports:
+      - 5433:5432
+
+  application:
+    image: application
+    container_name: application
+    build: ./
+    volumes:
+      - ../src:/usr/app
+    ports:
+      - 8080:8080
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    depends_on:
+      - postgres-db
