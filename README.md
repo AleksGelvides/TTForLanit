@@ -70,7 +70,7 @@
 ```
 {
     "id": long (NotNull, id>0),
-    "model": String (NotNull, lenght>0),
+    "model": String (NotNull, lenght>0, "VENDOR"-"MODEL"),
     "horsepower": int (NotNull, id>0),
     "ownerid" : long (NotNull, id>0)
 }
